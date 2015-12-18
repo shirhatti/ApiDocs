@@ -90,10 +90,6 @@
 	path = aspnet/identity
 	url = https://github.com/aspnet/identity
 	branch = master
-[submodule "aspnet/mvc"]
-	path = aspnet/mvc
-	url = https://github.com/aspnet/mvc
-	branch = master
 [submodule "aspnet/razor"]
 	path = aspnet/razor
 	url = https://github.com/aspnet/razor
