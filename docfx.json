@@ -5,7 +5,8 @@
         "aspnet/**/src/**/project.json",
       ],
       "exclude": [
-        "aspnet/testing/src/Microsoft.AspNet.Testing/*"
+        "aspnet/testing/src/Microsoft.AspNet.Testing/*",
+        "aspnet/mvc/src/**/project.json"
       ]
     }],
     "dest": "docs/_api_",

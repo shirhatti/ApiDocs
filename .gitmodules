@@ -90,10 +90,6 @@
 	path = aspnet/identity
 	url = https://github.com/aspnet/identity
 	branch = master
-[submodule "aspnet/weblistener"]
-	path = aspnet/weblistener
-	url = https://github.com/aspnet/weblistener
-	branch = master
 [submodule "aspnet/mvc"]
 	path = aspnet/mvc
 	url = https://github.com/aspnet/mvc
