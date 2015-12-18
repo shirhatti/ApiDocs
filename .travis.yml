@@ -1,0 +1,27 @@
+language: csharp
+sudo: required
+dist: trusty
+addons:
+  apt:
+    packages:
+    - unzip
+    - curl
+    - gettext
+    - libcurl4-openssl-dev
+    - libicu-dev
+    - libssl-dev
+    - libunwind8
+    - zlib1g
+env:
+  - MONO_THREADS_PER_CPU=2000 MONO_MANAGED_WATCHER=disabled
+mono:
+  - 4.0.5
+os:
+  - linux
+install:
+  - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
+  - dnvm install latest -runtime coreclr -alias default
+  - dnvm install default -runtime mono -alias default
+  - dnu commands install docfx --source https://myget.org/F/docfx-dev/api/v3/index.json
+script:
+  - echo "1"
