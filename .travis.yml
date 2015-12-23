@@ -13,12 +13,24 @@ addons:
     - libunwind8
     - zlib1g
 env:
-  - MONO_THREADS_PER_CPU=2000 MONO_MANAGED_WATCHER=disabled
+- MONO_THREADS_PER_CPU=2000 MONO_MANAGED_WATCHER=disabled
 os:
-  - linux
+- linux
 install:
-  - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
-  - source install.sh
+- curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_BRANCH=dev sh && source ~/.dnx/dnvm/dnvm.sh
+- source install.sh
 script:
-  - dnvm use default -runtime mono
-  - docfx docfx.json
+- dnvm use default -runtime mono
+- docfx docfx.json
+deploy:
+  skip_cleanup: true
+  provider: s3
+  access_key_id: AKIAJ4TLSX7MTOE6QUVQ
+  secret_access_key:
+    secure: C86h4maTgMJ9R8f0842VhlpcDHfbLIBTRUsGerCDWXMq2vhdlrF2rfi8O1iHdKQuJFZIXYHrrOTvWXFkVD4T4Q05c7PpIeW1MBfmh6T+oU1frBvfp/9GA6BYQzZ/6VzHc8HZTuDpVlPvYLY6aVu/VgjwHhBTP8LZnHIFWzLNslLto9BBo9/e4L6taQZZwVCN9g6Dc/Jl2hefQgc5tEYTJeWVIShnRAdFNxYZjPydN+mQe8E2e9NI+Z3iCkoVJOxUUR81mFPZ1R6xaFWelBk5wQkNopPIw3RAnfeEUvLDO7A8PkkJHHxkR1U1TN/Thl1LXAS1CVjBPVGeFiorm/9N0dtDpx3RlbFAOxKxnxa9YpbBXGBhXvv+mFbXCFmRc0xBLM+qXmRru2aJNLVXZq782HcP10ZR09NBTBRYAXRDpeaHf8Sn4huxYIzaHuLanWOC9CLOZBa1f9D5db1DH8WgQrW/9D9vokomXw5joOD3Hvklk3a/2IZK0kapflsBYu1c2Voe4qfE/InbgjMopPNbo684fl91Hs52/yv0PvYgr9fmHB+bfR8s6cwQ9azLgbfs2RJ7ZVBzC8ZmJ5jXPs/wO1HQmAFKQVB95SQXBl+pdwFZvd1FOJaMFLqqbKYEXxVYfjGdajwd7Vd0TnSAtTs/J2q0RMfrLCzLxP3vYHLpAic=
+  bucket: aspnet-apidocs
+  local-dir: docs/_build/html/
+  acl: public_read
+  on:
+    repo: shirhatti/ApiDocs
+    branch: test
